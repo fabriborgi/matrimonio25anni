@@ -74,7 +74,7 @@
       outline-offset: 2px;
     }
 
-    /* 2) Hero con parallax zoom-out (ora VIDEO MP4) */
+    /* 2) Hero con VIDEO MP4 parallax zoom-out */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -128,7 +128,7 @@
       color: var(--gold);
     }
 
-    /* 3) Carousel galleria */
+    /* 3) Carousel galleria con foto REALI matri*.jpeg */
     .gallery {
       display: flex;
       gap: 0.9rem;
@@ -161,7 +161,7 @@
       object-fit: cover;
     }
 
-    /* 4) Countdown + Frase speciale */
+    /* 4) Countdown + Nuova frase */
     .countdown {
       padding: 2.4rem 1rem;
       text-align: center;
@@ -179,7 +179,7 @@
       grid-template-columns: repeat(2, minmax(120px, 1fr));
       gap: 0.75rem;
       max-width: 420px;
-      margin: 0 auto 1.2rem;
+      margin: 0 auto 1.5rem;
     }
 
     .countdown__box {
@@ -205,19 +205,18 @@
       margin-top: 0.3rem;
     }
 
-    /* Nuova frase speciale sotto il countdown */
-    .milestones {
-      font-family: var(--title-font);
-      font-size: clamp(1rem, 4vw, 1.3rem);
-      color: var(--gold);
-      font-style: italic;
-      line-height: 1.4;
-      margin: 1.5rem auto 0;
+    /* Nuova frase sotto countdown */
+    .countdown__stats {
       max-width: 600px;
-      white-space: pre-line;
+      margin: 0 auto;
+      font-family: var(--title-font);
+      font-size: 1.1rem;
+      color: var(--black);
+      font-weight: 500;
+      line-height: 1.4;
     }
 
-    /* Resto del CSS invariato... */
+    /* Resto del CSS invariato */
     .invitation {
       background: var(--beige);
       padding: 2.4rem 1rem;
@@ -425,27 +424,70 @@
   </audio>
   <button class="audio-fab" id="audio-toggle" aria-label="Attiva musica" title="Play / Pausa">🎵</button>
 
-  <!-- 2. Hero Section (VIDEO MP4 con parallax) -->
+  <!-- 2. Hero Section con VIDEO MP4 (video1.mp4) -->
   <header class="hero">
-    <video class="hero__bg" id="hero-bg" muted autoplay loop playsinline aria-hidden="true">
+    <video 
+      class="hero__bg" 
+      id="hero-bg" 
+      autoplay 
+      loop 
+      muted 
+      playsinline 
+      preload="auto"
+      aria-hidden="true">
       <source src="video1.mp4" type="video/mp4">
-      <!-- Fallback immagine se il video non carica -->
-      <img src="matri1.jpg" alt="Fallback immagine hero">
     </video>
     <div class="hero__content">
-      <h1 class="hero__names">Jorge Karin</h1>
+      <h1 class="hero__names">Jorge &amp; Karin</h1>
       <p class="hero__subtitle">25 Anni Insieme di matrimonio</p>
     </div>
   </header>
 
-  <!-- 3. Carousel Galleria (9 foto reali) -->
+  <!-- 3. Carousel Galleria con le tue foto matri*.jpeg (esclusa matri11.jpeg) -->
   <section class="gallery" aria-label="Galleria fotografica anniversario">
-    <article class="gallery__item"><img src="matri1.jpg" alt="Foto sposi 1"></article>
-    <article class="gallery__item"><img src="matri2.jpg" alt="Foto sposi 2"></article>
-    <article class="gallery__item"><img src="matri3.jpg" alt="Foto sposi 3"></article>
-    <article class="gallery__item"><img src="matri4.jpg" alt="Foto sposi 4"></article>
-    <article class="gallery__item"><img src="matri5.jpg" alt="Foto sposi 5"></article>
-    <article class="gallery__item"><img src="matri6.jpg" alt="Foto sposi 6"></article>
-    <article class="gallery__item"><img src="matri7.jpg" alt="Foto sposi 7"></article>
-    <article class="gallery__item"><img src="matri8.jpg" alt="Foto sposi 8"></article>
-    <article class="gallery__item"><img src="matri9.jpg" alt="Foto sposi 9"></arti
+    <article class="gallery__item">
+      <img src="matri1.jpeg" alt="Foto sposi 1">
+    </article>
+    <article class="gallery__item">
+      <img src="matri2.jpeg" alt="Foto sposi 2">
+    </article>
+    <article class="gallery__item">
+      <img src="matri3.jpeg" alt="Foto sposi 3">
+    </article>
+    <article class="gallery__item">
+      <img src="matri4.jpeg" alt="Foto sposi 4">
+    </article>
+    <article class="gallery__item">
+      <img src="matri5.jpeg" alt="Foto sposi 5">
+    </article>
+    <article class="gallery__item">
+      <img src="matri6.jpeg" alt="Foto sposi 6">
+    </article>
+    <article class="gallery__item">
+      <img src="matri7.jpeg" alt="Foto sposi 7">
+    </article>
+    <article class="gallery__item">
+      <img src="matri8.jpeg" alt="Foto sposi 8">
+    </article>
+    <article class="gallery__item">
+      <img src="matri9.jpeg" alt="Foto sposi 9">
+    </article>
+    <article class="gallery__item">
+      <img src="matri10.jpeg" alt="Foto sposi 10">
+    </article>
+  </section>
+
+  <!-- 4. Sezione Countdown + Nuova frase -->
+  <section class="countdown" aria-labelledby="countdown-title">
+    <h2 id="countdown-title">25 Aprile 2026</h2>
+    <div class="countdown__grid" role="timer" aria-live="polite">
+      <div class="countdown__box">
+        <span class="countdown__value" id="days">00</span>
+        <span class="countdown__label">Giorni</span>
+      </div>
+      <div class="countdown__box">
+        <span class="countdown__value" id="hours">00</span>
+        <span class="countdown__label">Ore</span>
+      </div>
+      <div class="countdown__box">
+        <span class="countdown__value" id="minutes">00</s
