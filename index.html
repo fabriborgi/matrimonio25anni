@@ -420,7 +420,7 @@
   <audio id="bg-audio" loop preload="none">
     <source src="aerosmith.mp3" type="audio/mpeg">
   </audio>
-  <button class="audio-fab" id="audio-toggle" aria-label="Attiva musica" title="Play / Pausa">🎵Attiva musica</button>
+  <button class="audio-fab" id="audio-toggle" aria-label="Attiva musica" title="Play / Pausa">▶️</button>
 
   <header class="hero">
     <video 
@@ -566,12 +566,12 @@
           audioToggle.textContent = "⏸️";
           audioToggle.setAttribute("aria-label", "Metti in pausa musica");
         } catch (error) {
-          audioToggle.textContent = "🎵Attiva musica";
+          audioToggle.textContent = "▶️";
           audioToggle.setAttribute("aria-label", "Attiva musica");
         }
       } else {
         audio.pause();
-        audioToggle.textContent = "🎵Attiva musica";
+        audioToggle.textContent = "▶️";
         audioToggle.setAttribute("aria-label", "Attiva musica");
       }
     });
