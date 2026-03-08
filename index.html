@@ -74,7 +74,7 @@
       outline-offset: 2px;
     }
 
-    /* 2) Hero con parallax zoom-out */
+    /* 2) Hero con parallax zoom-out (ora VIDEO MP4) */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -90,19 +90,28 @@
     .hero__bg {
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.6)),
-        url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80");
-      background-size: cover;
-      background-position: center;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
       transform: scale(1.18);
       transform-origin: center center;
       z-index: -1;
       will-change: transform;
     }
 
+    .hero__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.6));
+      z-index: 1;
+    }
+
     .hero__content {
       padding: 1.5rem;
+      position: relative;
+      z-index: 2;
     }
 
     .hero__names {
@@ -152,7 +161,7 @@
       object-fit: cover;
     }
 
-    /* 4) Countdown */
+    /* 4) Countdown + Frase speciale */
     .countdown {
       padding: 2.4rem 1rem;
       text-align: center;
@@ -170,7 +179,7 @@
       grid-template-columns: repeat(2, minmax(120px, 1fr));
       gap: 0.75rem;
       max-width: 420px;
-      margin: 0 auto;
+      margin: 0 auto 1.2rem;
     }
 
     .countdown__box {
@@ -196,7 +205,19 @@
       margin-top: 0.3rem;
     }
 
-    /* 5) Invito formale */
+    /* Nuova frase speciale sotto il countdown */
+    .milestones {
+      font-family: var(--title-font);
+      font-size: clamp(1rem, 4vw, 1.3rem);
+      color: var(--gold);
+      font-style: italic;
+      line-height: 1.4;
+      margin: 1.5rem auto 0;
+      max-width: 600px;
+      white-space: pre-line;
+    }
+
+    /* Resto del CSS invariato... */
     .invitation {
       background: var(--beige);
       padding: 2.4rem 1rem;
@@ -237,7 +258,6 @@
       margin-top: 0.6rem;
     }
 
-    /* 6) Info pratiche con card carousel */
     .info {
       background: var(--white);
       padding: 2.4rem 0 2.7rem;
@@ -308,7 +328,6 @@
       min-height: 180px;
     }
 
-    /* 7) Footer e FAQ */
     .footer-faq {
       background: var(--black);
       color: var(--white);
@@ -406,207 +425,27 @@
   </audio>
   <button class="audio-fab" id="audio-toggle" aria-label="Attiva musica" title="Play / Pausa">🎵</button>
 
-  <!-- 2. Hero Section (Parallax) -->
+  <!-- 2. Hero Section (VIDEO MP4 con parallax) -->
   <header class="hero">
-    <div class="hero__bg" id="hero-bg" aria-hidden="true"></div>
+    <video class="hero__bg" id="hero-bg" muted autoplay loop playsinline aria-hidden="true">
+      <source src="video1.mp4" type="video/mp4">
+      <!-- Fallback immagine se il video non carica -->
+      <img src="matri1.jpg" alt="Fallback immagine hero">
+    </video>
     <div class="hero__content">
-      <h1 class="hero__names">Karin &amp; Jorge</h1>
+      <h1 class="hero__names">Jorge Karin</h1>
       <p class="hero__subtitle">25 Anni Insieme di matrimonio</p>
     </div>
   </header>
 
-  <!-- 3. Carousel Galleria -->
+  <!-- 3. Carousel Galleria (9 foto reali) -->
   <section class="gallery" aria-label="Galleria fotografica anniversario">
-    <article class="gallery__item">
-      <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1100&q=80" alt="Gli sposi sorridono insieme">
-    </article>
-    <article class="gallery__item">
-      <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0d799?auto=format&fit=crop&w=1100&q=80" alt="Dettaglio romantico della cerimonia">
-    </article>
-    <article class="gallery__item">
-      <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1100&q=80" alt="Momento di festa con amici e parenti">
-    </article>
-  </section>
-
-  <!-- 4. Sezione Countdown -->
-  <section class="countdown" aria-labelledby="countdown-title">
-    <h2 id="countdown-title">25 Aprile 2026</h2>
-    <div class="countdown__grid" role="timer" aria-live="polite">
-      <div class="countdown__box">
-        <span class="countdown__value" id="days">00</span>
-        <span class="countdown__label">Giorni</span>
-      </div>
-      <div class="countdown__box">
-        <span class="countdown__value" id="hours">00</span>
-        <span class="countdown__label">Ore</span>
-      </div>
-      <div class="countdown__box">
-        <span class="countdown__value" id="minutes">00</span>
-        <span class="countdown__label">Minuti</span>
-      </div>
-      <div class="countdown__box">
-        <span class="countdown__value" id="seconds">00</span>
-        <span class="countdown__label">Secondi</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Sezione Invito Formale -->
-  <section class="invitation">
-    <div class="invitation__box">
-      <h2>Invito Formale</h2>
-      <p>
-        Con gioia e gratitudine, invitiamo amici e parenti a condividere con noi la celebrazione
-        del nostro 25° anniversario di matrimonio. Sarà un momento speciale di affetto, ricordi
-        e nuove promesse, da vivere insieme alle persone che hanno accompagnato il nostro cammino.
-      </p>
-      <p class="invitation__rsvp">Risposta di partecipazione entro il 20 Marzo 2026.</p>
-      <p class="invitation__signature">Con amore, Karin e Jorge</p>
-    </div>
-  </section>
-
-  <!-- 6. Sezione Info Pratiche (Carousel di Card) -->
-  <section class="info" aria-labelledby="info-title">
-    <h2 class="info__title" id="info-title">Informazioni Pratiche</h2>
-    <div class="info__carousel" aria-label="Card informative evento">
-      <article class="info__card">
-        <div class="info__icon" aria-hidden="true">📍</div>
-        <h3>Luogo</h3>
-        <p>La valle di Anna, Via di valle 31,Lastra a Signa, 50055,Firenze</p>
-        <iframe
-          class="info__map"
-          title="Mappa della location"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2882.0080904252973!2d11.119885376354585!3d43.751928771097575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a5b88e0a27813%3A0xa5c1d58355aa74ec!2sLa%20Valle%20Di%20Anna!5e0!3m2!1sit!2sit!4v1772978254831!5m2!1sit!2sit">
-        </iframe>
-      </article>
-
-      <article class="info__card">
-        <div class="info__icon" aria-hidden="true">📞</div>
-        <h3>Conferma Presenza</h3>
-        <p>Per confermare la partecipazione, contattare direttamente gli sposi.</p>
-        <a class="info__phone" href="tel:+393298463470">Chiama: +39 3298463470</a>
-      </article>
-
-      <article class="info__card">
-        <div class="info__icon" aria-hidden="true">👗</div>
-        <h3>Dress Code</h3>
-        <p>Elegante formale, con preferenza per colori pastello e tonalità delicate.</p>
-      </article>
-
-      <article class="info__card">
-        <div class="info__icon" aria-hidden="true">🕰️</div>
-        <h3>Dettagli</h3>
-        <p>Arrivo ospiti ore 10:30, cerimonia ore 11:00, pranzo ore 13:00.</p>
-        <p>Parcheggio riservato disponibile all'interno della struttura.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- 7. Footer e FAQ -->
-  <footer class="footer-faq">
-    <h2>FAQ</h2>
-    <div class="faq">
-      <details>
-        <summary>Dove si tiene la cerimonia?</summary>
-        <p>La cerimonia si terrà presso Villa Aurora, Via delle Rose 25, Firenze.</p>
-      </details>
-      <details>
-        <summary>Come confermo la presenza?</summary>
-        <p>È possibile confermare chiamando il numero nella card "Conferma Presenza" entro la data RSVP.</p>
-      </details>
-      <details>
-        <summary>C'è parcheggio?</summary>
-        <p>Sì, è disponibile un parcheggio riservato per gli ospiti all'interno della location.</p>
-      </details>
-      <details>
-        <summary>Dress code dettagliato?</summary>
-        <p>Elegante formale, con abiti in palette pastello e stile sobrio.</p>
-      </details>
-      <details>
-        <summary>Regali?</summary>
-        <p>No, basta la vostra presenza.</p>
-      </details>
-    </div>
-    <p class="footer-note">25 Anni Insieme • 25 Aprile 2026</p>
-  </footer>
-
-  <script>
-    // Play/Pause audio background con aggiornamento icona e aria-label.
-    const audio = document.getElementById("bg-audio");
-    const audioToggle = document.getElementById("audio-toggle");
-
-    audioToggle.addEventListener("click", async () => {
-      if (audio.paused) {
-        try {
-          await audio.play();
-          audioToggle.textContent = "⏸️";
-          audioToggle.setAttribute("aria-label", "Metti in pausa musica");
-        } catch (error) {
-          audioToggle.textContent = "🎵";
-          audioToggle.setAttribute("aria-label", "Attiva musica");
-        }
-      } else {
-        audio.pause();
-        audioToggle.textContent = "🎵";
-        audioToggle.setAttribute("aria-label", "Attiva musica");
-      }
-    });
-
-    // Parallax zoom-out: parte zoomata e riduce la scala allo scroll.
-    const heroBg = document.getElementById("hero-bg");
-    const minScale = 1.02;
-    const maxScale = 1.18;
-
-    const updateParallax = () => {
-      const y = window.scrollY;
-      const ratio = Math.min(y / window.innerHeight, 1);
-      const scale = maxScale - (maxScale - minScale) * ratio;
-      const shift = Math.min(y * 0.2, 90);
-      heroBg.style.transform = `translateY(${shift}px) scale(${scale.toFixed(3)})`;
-    };
-
-    updateParallax();
-    window.addEventListener("scroll", updateParallax, { passive: true });
-
-    // Countdown verso il 25/04/2026 ore 11:00 (ora locale).
-    const targetDate = new Date(2026, 3, 25, 11, 0, 0).getTime();
-    const fields = {
-      days: document.getElementById("days"),
-      hours: document.getElementById("hours"),
-      minutes: document.getElementById("minutes"),
-      seconds: document.getElementById("seconds")
-    };
-
-    const format = (value) => String(value).padStart(2, "0");
-
-    const renderCountdown = () => {
-      const now = Date.now();
-      const diff = targetDate - now;
-
-      if (diff <= 0) {
-        fields.days.textContent = "00";
-        fields.hours.textContent = "00";
-        fields.minutes.textContent = "00";
-        fields.seconds.textContent = "00";
-        return;
-      }
-
-      const totalSeconds = Math.floor(diff / 1000);
-      const days = Math.floor(totalSeconds / 86400);
-      const hours = Math.floor((totalSeconds % 86400) / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = totalSeconds % 60;
-
-      fields.days.textContent = format(days);
-      fields.hours.textContent = format(hours);
-      fields.minutes.textContent = format(minutes);
-      fields.seconds.textContent = format(seconds);
-    };
-
-    renderCountdown();
-    setInterval(renderCountdown, 1000);
-  </script>
-</body>
-</html>
+    <article class="gallery__item"><img src="matri1.jpg" alt="Foto sposi 1"></article>
+    <article class="gallery__item"><img src="matri2.jpg" alt="Foto sposi 2"></article>
+    <article class="gallery__item"><img src="matri3.jpg" alt="Foto sposi 3"></article>
+    <article class="gallery__item"><img src="matri4.jpg" alt="Foto sposi 4"></article>
+    <article class="gallery__item"><img src="matri5.jpg" alt="Foto sposi 5"></article>
+    <article class="gallery__item"><img src="matri6.jpg" alt="Foto sposi 6"></article>
+    <article class="gallery__item"><img src="matri7.jpg" alt="Foto sposi 7"></article>
+    <article class="gallery__item"><img src="matri8.jpg" alt="Foto sposi 8"></article>
+    <article class="gallery__item"><img src="matri9.jpg" alt="Foto sposi 9"></arti
