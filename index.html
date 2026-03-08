@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>25° Anniversario di Matrimonio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white: #FFFFFF;
+      --black: #1A1A1A;
+      --gold: #D4AF37;
+      --beige: #F5F5DC;
+      --title-font: "Playfair Display", serif;
+      --text-font: "Montserrat", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--text-font);
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    h1,
+    h2,
+    h3,
+    summary {
+      font-family: var(--title-font);
+      font-weight: 700;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* 1) Bottone audio fluttuante */
+    .audio-fab {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      width: 56px;
+      height: 56px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 1.35rem;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+      z-index: 50;
+      cursor: pointer;
+    }
+
+    .audio-fab:focus-visible {
+      outline: 2px solid var(--white);
+      outline-offset: 2px;
+    }
+
+    /* 2) Hero con parallax zoom-out */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: var(--black);
+      overflow: hidden;
+      text-align: center;
+      color: var(--white);
+      isolation: isolate;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.6)),
+        url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.18);
+      transform-origin: center center;
+      z-index: -1;
+      will-change: transform;
+    }
+
+    .hero__content {
+      padding: 1.5rem;
+    }
+
+    .hero__names {
+      font-size: clamp(2rem, 9vw, 3.8rem);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero__subtitle {
+      font-size: clamp(1rem, 4vw, 1.4rem);
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* 3) Carousel galleria */
+    .gallery {
+      display: flex;
+      gap: 0.9rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 1rem;
+      background: var(--beige);
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .gallery::-webkit-scrollbar {
+      display: none;
+    }
+
+    .gallery__item {
+      flex: 0 0 86%;
+      scroll-snap-align: center;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(26, 26, 26, 0.16);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      background: var(--white);
+    }
+
+    .gallery__item img {
+      display: block;
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    /* 4) Countdown */
+    .countdown {
+      padding: 2.4rem 1rem;
+      text-align: center;
+      background: var(--white);
+    }
+
+    .countdown h2 {
+      color: var(--gold);
+      font-size: clamp(1.8rem, 7vw, 2.5rem);
+      margin-bottom: 1.2rem;
+    }
+
+    .countdown__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(120px, 1fr));
+      gap: 0.75rem;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .countdown__box {
+      background: var(--black);
+      color: var(--white);
+      border-radius: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      padding: 0.85rem 0.5rem;
+    }
+
+    .countdown__value {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1.1;
+    }
+
+    .countdown__label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin-top: 0.3rem;
+    }
+
+    /* 5) Invito formale */
+    .invitation {
+      background: var(--beige);
+      padding: 2.4rem 1rem;
+    }
+
+    .invitation__box {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      background: var(--white);
+      border: 2px solid var(--gold);
+      border-radius: 14px;
+      padding: 1.5rem 1.2rem;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+    }
+
+    .invitation__box h2 {
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-size: clamp(1.6rem, 6vw, 2.2rem);
+    }
+
+    .invitation__box p {
+      margin-bottom: 0.95rem;
+      font-size: 0.98rem;
+    }
+
+    .invitation__rsvp {
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .invitation__signature {
+      font-family: var(--title-font);
+      font-style: italic;
+      color: var(--gold);
+      font-size: 1.35rem;
+      margin-top: 0.6rem;
+    }
+
+    /* 6) Info pratiche con card carousel */
+    .info {
+      background: var(--white);
+      padding: 2.4rem 0 2.7rem;
+    }
+
+    .info__title {
+      text-align: center;
+      color: var(--black);
+      margin-bottom: 1rem;
+      padding: 0 1rem;
+      font-size: clamp(1.6rem, 6vw, 2.2rem);
+    }
+
+    .info__carousel {
+      display: flex;
+      gap: 0.9rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 0 1rem 0.4rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .info__carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .info__card {
+      flex: 0 0 88%;
+      scroll-snap-align: start;
+      background: var(--beige);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      border-radius: 14px;
+      padding: 1rem;
+      box-shadow: 0 6px 18px rgba(26, 26, 26, 0.1);
+    }
+
+    .info__icon {
+      font-size: 1.7rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .info__card h3 {
+      color: var(--gold);
+      margin-bottom: 0.45rem;
+      font-size: 1.35rem;
+    }
+
+    .info__card p {
+      font-size: 0.93rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .info__phone {
+      display: inline-block;
+      margin-top: 0.4rem;
+      font-weight: 600;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(26, 26, 26, 0.5);
+    }
+
+    .info__map {
+      margin-top: 0.45rem;
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      min-height: 180px;
+    }
+
+    /* 7) Footer e FAQ */
+    .footer-faq {
+      background: var(--black);
+      color: var(--white);
+      padding: 2.5rem 1rem 2rem;
+    }
+
+    .footer-faq h2 {
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: clamp(1.6rem, 6vw, 2rem);
+    }
+
+    .faq {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .faq details {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 0.75rem 0;
+    }
+
+    .faq summary {
+      list-style: none;
+      cursor: pointer;
+      color: var(--white);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+    }
+
+    .faq summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq summary::after {
+      content: "+";
+      color: var(--gold);
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .faq details[open] summary::after {
+      content: "−";
+    }
+
+    .faq p {
+      margin-top: 0.5rem;
+      color: #e8e8e8;
+      font-size: 0.94rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 1.4rem;
+      color: var(--gold);
+      font-family: var(--title-font);
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .gallery,
+      .info__carousel {
+        justify-content: center;
+      }
+
+      .gallery__item {
+        flex-basis: min(480px, 60vw);
+      }
+
+      .info__card {
+        flex-basis: min(420px, 45vw);
+      }
+
+      .countdown__grid {
+        grid-template-columns: repeat(4, minmax(100px, 1fr));
+        max-width: 560px;
+      }
+
+      .audio-fab {
+        right: 22px;
+        bottom: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 1. Bottone Audio Fluttuante -->
+  <audio id="bg-audio" loop preload="none">
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_901165f9c0.mp3?filename=romantic-background-116246.mp3" type="audio/mpeg">
+  </audio>
+  <button class="audio-fab" id="audio-toggle" aria-label="Attiva musica" title="Play / Pausa">🎵</button>
+
+  <!-- 2. Hero Section (Parallax) -->
+  <header class="hero">
+    <div class="hero__bg" id="hero-bg" aria-hidden="true"></div>
+    <div class="hero__content">
+      <h1 class="hero__names">Giulia &amp; Marco</h1>
+      <p class="hero__subtitle">25 Anni Insieme</p>
+    </div>
+  </header>
+
+  <!-- 3. Carousel Galleria -->
+  <section class="gallery" aria-label="Galleria fotografica anniversario">
+    <article class="gallery__item">
+      <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1100&q=80" alt="Gli sposi sorridono insieme">
+    </article>
+    <article class="gallery__item">
+      <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0d799?auto=format&fit=crop&w=1100&q=80" alt="Dettaglio romantico della cerimonia">
+    </article>
+    <article class="gallery__item">
+      <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1100&q=80" alt="Momento di festa con amici e parenti">
+    </article>
+  </section>
+
+  <!-- 4. Sezione Countdown -->
+  <section class="countdown" aria-labelledby="countdown-title">
+    <h2 id="countdown-title">25 Aprile 2026</h2>
+    <div class="countdown__grid" role="timer" aria-live="polite">
+      <div class="countdown__box">
+        <span class="countdown__value" id="days">00</span>
+        <span class="countdown__label">Giorni</span>
+      </div>
+      <div class="countdown__box">
+        <span class="countdown__value" id="hours">00</span>
+        <span class="countdown__label">Ore</span>
+      </div>
+      <div class="countdown__box">
+        <span class="countdown__value" id="minutes">00</span>
+        <span class="countdown__label">Minuti</span>
+      </div>
+      <div class="countdown__box">
+        <span class="countdown__value" id="seconds">00</span>
+        <span class="countdown__label">Secondi</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Sezione Invito Formale -->
+  <section class="invitation">
+    <div class="invitation__box">
+      <h2>Invito Formale</h2>
+      <p>
+        Con gioia e gratitudine, invitiamo amici e parenti a condividere con noi la celebrazione
+        del nostro 25° anniversario di matrimonio. Sarà un momento speciale di affetto, ricordi
+        e nuove promesse, da vivere insieme alle persone che hanno accompagnato il nostro cammino.
+      </p>
+      <p class="invitation__rsvp">RSVP entro il 1 Marzo 2026.</p>
+      <p class="invitation__signature">Con amore, Giulia e Marco</p>
+    </div>
+  </section>
+
+  <!-- 6. Sezione Info Pratiche (Carousel di Card) -->
+  <section class="info" aria-labelledby="info-title">
+    <h2 class="info__title" id="info-title">Informazioni Pratiche</h2>
+    <div class="info__carousel" aria-label="Card informative evento">
+      <article class="info__card">
+        <div class="info__icon" aria-hidden="true">📍</div>
+        <h3>Luogo</h3>
+        <p>Villa Aurora, Via delle Rose 25, Firenze</p>
+        <iframe
+          class="info__map"
+          title="Mappa della location"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=43.7696,11.2558&z=15&output=embed">
+        </iframe>
+      </article>
+
+      <article class="info__card">
+        <div class="info__icon" aria-hidden="true">📞</div>
+        <h3>Conferma Presenza</h3>
+        <p>Per confermare la partecipazione, contattare direttamente gli sposi.</p>
+        <a class="info__phone" href="tel:+390551234567">Chiama: +39 055 123 4567</a>
+      </article>
+
+      <article class="info__card">
+        <div class="info__icon" aria-hidden="true">👗</div>
+        <h3>Dress Code</h3>
+        <p>Elegante formale, con preferenza per colori pastello e tonalità delicate.</p>
+      </article>
+
+      <article class="info__card">
+        <div class="info__icon" aria-hidden="true">🕰️</div>
+        <h3>Dettagli</h3>
+        <p>Arrivo ospiti ore 10:30, cerimonia ore 11:00, pranzo ore 13:00.</p>
+        <p>Parcheggio riservato disponibile all'interno della struttura.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 7. Footer e FAQ -->
+  <footer class="footer-faq">
+    <h2>FAQ</h2>
+    <div class="faq">
+      <details>
+        <summary>Dove si tiene la cerimonia?</summary>
+        <p>La cerimonia si terrà presso Villa Aurora, Via delle Rose 25, Firenze.</p>
+      </details>
+      <details>
+        <summary>Come confermo la presenza?</summary>
+        <p>È possibile confermare chiamando il numero nella card "Conferma Presenza" entro la data RSVP.</p>
+      </details>
+      <details>
+        <summary>C'è parcheggio?</summary>
+        <p>Sì, è disponibile un parcheggio riservato per gli ospiti all'interno della location.</p>
+      </details>
+      <details>
+        <summary>Dress code dettagliato?</summary>
+        <p>Elegante formale, con abiti in palette pastello e stile sobrio.</p>
+      </details>
+      <details>
+        <summary>Regali?</summary>
+        <p>No, basta la vostra presenza.</p>
+      </details>
+    </div>
+    <p class="footer-note">25 Anni Insieme • 25 Aprile 2026</p>
+  </footer>
+
+  <script>
+    // Play/Pause audio background con aggiornamento icona e aria-label.
+    const audio = document.getElementById("bg-audio");
+    const audioToggle = document.getElementById("audio-toggle");
+
+    audioToggle.addEventListener("click", async () => {
+      if (audio.paused) {
+        try {
+          await audio.play();
+          audioToggle.textContent = "⏸️";
+          audioToggle.setAttribute("aria-label", "Metti in pausa musica");
+        } catch (error) {
+          audioToggle.textContent = "🎵";
+          audioToggle.setAttribute("aria-label", "Attiva musica");
+        }
+      } else {
+        audio.pause();
+        audioToggle.textContent = "🎵";
+        audioToggle.setAttribute("aria-label", "Attiva musica");
+      }
+    });
+
+    // Parallax zoom-out: parte zoomata e riduce la scala allo scroll.
+    const heroBg = document.getElementById("hero-bg");
+    const minScale = 1.02;
+    const maxScale = 1.18;
+
+    const updateParallax = () => {
+      const y = window.scrollY;
+      const ratio = Math.min(y / window.innerHeight, 1);
+      const scale = maxScale - (maxScale - minScale) * ratio;
+      const shift = Math.min(y * 0.2, 90);
+      heroBg.style.transform = `translateY(${shift}px) scale(${scale.toFixed(3)})`;
+    };
+
+    updateParallax();
+    window.addEventListener("scroll", updateParallax, { passive: true });
+
+    // Countdown verso il 25/04/2026 ore 11:00 (ora locale).
+    const targetDate = new Date(2026, 3, 25, 11, 0, 0).getTime();
+    const fields = {
+      days: document.getElementById("days"),
+      hours: document.getElementById("hours"),
+      minutes: document.getElementById("minutes"),
+      seconds: document.getElementById("seconds")
+    };
+
+    const format = (value) => String(value).padStart(2, "0");
+
+    const renderCountdown = () => {
+      const now = Date.now();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        fields.days.textContent = "00";
+        fields.hours.textContent = "00";
+        fields.minutes.textContent = "00";
+        fields.seconds.textContent = "00";
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      fields.days.textContent = format(days);
+      fields.hours.textContent = format(hours);
+      fields.minutes.textContent = format(minutes);
+      fields.seconds.textContent = format(seconds);
+    };
+
+    renderCountdown();
+    setInterval(renderCountdown, 1000);
+  </script>
+</body>
+</html>
