@@ -157,7 +157,7 @@
       object-fit: cover;
     }
 
-    /* 4) Countdown + Nuova frase */
+    /* 4) Countdown + Frase di ottimismo */
     .countdown {
       padding: 2.4rem 1rem;
       text-align: center;
@@ -175,7 +175,7 @@
       grid-template-columns: repeat(2, minmax(120px, 1fr));
       gap: 0.75rem;
       max-width: 420px;
-      margin: 0 auto 1.5rem;
+      margin: 0 auto;
     }
 
     .countdown__box {
@@ -201,14 +201,16 @@
       margin-top: 0.3rem;
     }
 
-    .countdown__stats {
-      max-width: 600px;
-      margin: 0 auto;
+    .optimistic-phrase {
+      max-width: 500px;
+      margin: 2rem auto 0 auto;
+      padding: 0 1.5rem;
       font-family: var(--title-font);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: var(--black);
-      font-weight: 500;
-      line-height: 1.4;
+      line-height: 1.5;
+      font-style: italic;
+      text-align: center;
     }
 
     /* 5) Invito formale */
@@ -439,7 +441,6 @@
   </header>
 
   <section class="gallery" aria-label="Galleria fotografica anniversario">
-    <article class="gallery__item"><img src="matri1.jpeg" alt="Foto sposi 1"></article>
     <article class="gallery__item"><img src="matri2.jpeg" alt="Foto sposi 2"></article>
     <article class="gallery__item"><img src="matri3.jpeg" alt="Foto sposi 3"></article>
     <article class="gallery__item"><img src="matri4.jpeg" alt="Foto sposi 4"></article>
@@ -471,6 +472,9 @@
         <span class="countdown__label">Secondi</span>
       </div>
     </div>
+    <p class="optimistic-phrase">
+      "Il tempo vola quando si ama. Guardiamo al futuro con la stessa luce, speranza e gioia del primo giorno."
+    </p>
   </section>
 
   <section class="invitation">
@@ -584,7 +588,6 @@
       const scale = maxScale - (maxScale - minScale) * ratio;
       const shift = Math.min(y * 0.2, 90);
       
-      // Controllo di sicurezza se il background è un tag video (che gestisce diversamente transform rispetto a div in alcuni browser)
       if(heroBg) {
           heroBg.style.transform = `translateY(${shift}px) scale(${scale.toFixed(3)})`;
       }
