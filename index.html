@@ -124,25 +124,23 @@
       color: var(--gold);
     }
 
-    /* 3) Carousel galleria */
-    .gallery {
+    /* 3) Foto singole (sostituisce il carousel) */
+    .single-photo {
       display: flex;
-      gap: 0.9rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: 1rem;
+      justify-content: center;
+      padding: 2.4rem 1rem;
+    }
+
+    .single-photo--beige {
       background: var(--beige);
-      scrollbar-width: none;
-      -ms-overflow-style: none;
     }
 
-    .gallery::-webkit-scrollbar {
-      display: none;
+    .single-photo--white {
+      background: var(--white);
     }
 
-    .gallery__item {
-      flex: 0 0 86%;
-      scroll-snap-align: center;
+    .single-photo__card {
+      width: 86%;
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 8px 24px rgba(26, 26, 26, 0.16);
@@ -150,7 +148,7 @@
       background: var(--white);
     }
 
-    .gallery__item img {
+    .single-photo__card img {
       display: block;
       width: 100%;
       height: 280px;
@@ -391,13 +389,12 @@
     }
 
     @media (min-width: 768px) {
-      .gallery,
       .info__carousel {
         justify-content: center;
       }
 
-      .gallery__item {
-        flex-basis: min(480px, 60vw);
+      .single-photo__card {
+        width: min(480px, 60vw);
       }
 
       .info__card {
@@ -440,14 +437,11 @@
     </div>
   </header>
 
-  <section class="gallery" aria-label="Galleria fotografica anniversario">
-    <article class="gallery__item"><img src="matri67.jpeg" alt="Foto sposi 1"></article>
-    <article class="gallery__item"><img src="matri2.jpeg" alt="Foto sposi 2"></article>
-    <article class="gallery__item"><img src="matri16.jpeg" alt="Foto sposi 3"></article>
-    <article class="gallery__item"><img src="matri20.jpeg" alt="Foto sposi 5"></article>
-    <article class="gallery__item"><img src="matri21.jpeg" alt="Foto sposi 6"></article>
-    <article class="gallery__item"><img src="matri8.jpeg" alt="Foto sposi 7"></article>
-    <article class="gallery__item"><img src="matri70.jpeg" alt="Foto sposi 8"></article>
+  <!-- PRIMA FOTO (al posto del vecchio carosello) -->
+  <section class="single-photo single-photo--beige" aria-label="Foto in evidenza 1">
+    <article class="single-photo__card">
+      <img src="matri67.jpeg" alt="Foto sposi 1">
+    </article>
   </section>
 
   <section class="countdown" aria-labelledby="countdown-title">
@@ -475,6 +469,13 @@
     </p>
   </section>
 
+  <!-- SECONDA FOTO (sotto il countdown) -->
+  <section class="single-photo single-photo--white" aria-label="Foto in evidenza 2">
+    <article class="single-photo__card">
+      <img src="matri2.jpeg" alt="Foto sposi 2">
+    </article>
+  </section>
+
   <section class="invitation">
     <div class="optimistic-phrase">
       <p>
@@ -485,6 +486,13 @@
       <p class="invitation__rsvp">Risposta di partecipazione entro il 20 Marzo 2026.</p>
       <p class="invitation__signature">Con amore, Jorge e Karin</p>
     </div>
+  </section>
+
+  <!-- TERZA FOTO (prima delle Informazioni Pratiche) -->
+  <section class="single-photo single-photo--beige" aria-label="Foto in evidenza 3">
+    <article class="single-photo__card">
+      <img src="matri16.jpeg" alt="Foto sposi 3">
+    </article>
   </section>
 
   <section class="info" aria-labelledby="info-title">
