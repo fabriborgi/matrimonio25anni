@@ -51,9 +51,7 @@
       font-weight: 400;
     }
 
-    a {
-      color: inherit;
-    }
+    a { color: inherit; }
 
     /* 1) Bottone audio fluttuante */
     .audio-fab {
@@ -79,7 +77,7 @@
       outline-offset: 2px;
     }
 
-    /* 2) Hero con VIDEO MP4 parallax zoom-out */
+    /* 2) Hero */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -109,7 +107,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(43, 58, 74, 0.35), rgba(43, 58, 74, 0.6));
+      background: linear-gradient(to bottom, rgba(43,58,74,0.35), rgba(43,58,74,0.6));
       z-index: 1;
     }
 
@@ -126,12 +124,55 @@
       margin-bottom: 0.6rem;
     }
 
-    .hero__subtitle {
-      font-size: clamp(1rem, 4vw, 1.4rem);
-      font-weight: 500;
-      letter-spacing: 0.2em;
+    /* Freccia scroll animata */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0.5rem;
+      transition: opacity 0.4s ease;
+    }
+
+    .scroll-hint__label {
+      font-family: var(--text-font);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .scroll-hint__arrow {
+      width: 40px;
+      height: 40px;
+      border: 2px solid rgba(255, 255, 255, 0.55);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      animation: bounce 1.8s ease-in-out infinite;
+    }
+
+    .scroll-hint__arrow svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0);    opacity: 1;   }
+      50%       { transform: translateY(9px);  opacity: 0.5; }
     }
 
     /* 3) Foto singole */
@@ -141,20 +182,15 @@
       padding: 2.4rem 1rem;
     }
 
-    .single-photo--beige {
-      background: var(--beige);
-    }
-
-    .single-photo--white {
-      background: var(--white);
-    }
+    .single-photo--beige { background: var(--beige); }
+    .single-photo--white { background: var(--white); }
 
     .single-photo__card {
       width: 86%;
       border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 8px 24px rgba(43, 58, 74, 0.16);
-      border: 1px solid rgba(107, 139, 174, 0.35);
+      box-shadow: 0 8px 24px rgba(43,58,74,0.16);
+      border: 1px solid rgba(107,139,174,0.35);
       background: var(--white);
     }
 
@@ -165,7 +201,7 @@
       object-fit: cover;
     }
 
-    /* 4) Countdown + Frase di ottimismo */
+    /* 4) Countdown */
     .countdown {
       padding: 2.4rem 1rem;
       text-align: center;
@@ -190,7 +226,7 @@
       background: var(--black);
       color: var(--white);
       border-radius: 12px;
-      border: 1px solid rgba(107, 139, 174, 0.4);
+      border: 1px solid rgba(107,139,174,0.4);
       padding: 0.85rem 0.5rem;
     }
 
@@ -220,37 +256,10 @@
       text-align: center;
     }
 
-    /* 5) Invito formale */
+    /* 5) Invito */
     .invitation {
       background: var(--beige);
       padding: 2.4rem 1rem;
-    }
-
-    .invitation__box {
-      max-width: 760px;
-      margin: 0 auto;
-      text-align: center;
-      background: var(--white);
-      border: 2px solid var(--gold);
-      border-radius: 14px;
-      padding: 1.5rem 1.2rem;
-      box-shadow: 0 8px 22px rgba(43, 58, 74, 0.08);
-    }
-
-    .invitation__box h2 {
-      color: var(--gold);
-      margin-bottom: 1rem;
-      font-size: clamp(1.6rem, 6vw, 2.2rem);
-    }
-
-    .invitation__box p {
-      margin-bottom: 0.95rem;
-      font-size: 0.98rem;
-    }
-
-    .invitation__rsvp {
-      font-weight: 600;
-      color: var(--black);
     }
 
     .invitation__signature {
@@ -284,24 +293,19 @@
       -ms-overflow-style: none;
     }
 
-    .info__carousel::-webkit-scrollbar {
-      display: none;
-    }
+    .info__carousel::-webkit-scrollbar { display: none; }
 
     .info__card {
       flex: 0 0 88%;
       scroll-snap-align: start;
       background: var(--beige);
-      border: 1px solid rgba(107, 139, 174, 0.45);
+      border: 1px solid rgba(107,139,174,0.45);
       border-radius: 14px;
       padding: 1rem;
-      box-shadow: 0 6px 18px rgba(43, 58, 74, 0.1);
+      box-shadow: 0 6px 18px rgba(43,58,74,0.1);
     }
 
-    .info__icon {
-      font-size: 1.7rem;
-      margin-bottom: 0.35rem;
-    }
+    .info__icon { font-size: 1.7rem; margin-bottom: 0.35rem; }
 
     .info__card h3 {
       color: var(--gold);
@@ -309,10 +313,7 @@
       font-size: 1.6rem;
     }
 
-    .info__card p {
-      font-size: 0.93rem;
-      margin-bottom: 0.5rem;
-    }
+    .info__card p { font-size: 0.93rem; margin-bottom: 0.5rem; }
 
     .info__phone {
       display: inline-block;
@@ -320,7 +321,7 @@
       font-weight: 600;
       color: var(--black);
       text-decoration: none;
-      border-bottom: 1px solid rgba(43, 58, 74, 0.5);
+      border-bottom: 1px solid rgba(43,58,74,0.5);
     }
 
     .info__map {
@@ -345,13 +346,10 @@
       font-size: clamp(1.6rem, 6vw, 2rem);
     }
 
-    .faq {
-      max-width: 760px;
-      margin: 0 auto;
-    }
+    .faq { max-width: 760px; margin: 0 auto; }
 
     .faq details {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      border-bottom: 1px solid rgba(255,255,255,0.25);
       padding: 0.75rem 0;
     }
 
@@ -366,26 +364,11 @@
       gap: 0.9rem;
     }
 
-    .faq summary::-webkit-details-marker {
-      display: none;
-    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; color: var(--gold); font-size: 1.3rem; line-height: 1; }
+    .faq details[open] summary::after { content: "−"; }
 
-    .faq summary::after {
-      content: "+";
-      color: var(--gold);
-      font-size: 1.3rem;
-      line-height: 1;
-    }
-
-    .faq details[open] summary::after {
-      content: "−";
-    }
-
-    .faq p {
-      margin-top: 0.5rem;
-      color: #e8e8e8;
-      font-size: 0.94rem;
-    }
+    .faq p { margin-top: 0.5rem; color: #e8e8e8; font-size: 0.94rem; }
 
     .footer-note {
       text-align: center;
@@ -395,7 +378,7 @@
       font-size: 1.8rem;
     }
 
-    /* Esclusioni: FAQ e card carosello usano Montserrat */
+    /* Esclusioni font */
     .faq summary,
     .faq p,
     .info__card h3,
@@ -404,247 +387,250 @@
     }
 
     @media (min-width: 768px) {
-      .info__carousel {
-        justify-content: center;
-      }
-
-      .single-photo__card {
-        width: min(480px, 60vw);
-      }
-
-      .info__card {
-        flex-basis: min(420px, 45vw);
-      }
-
-      .countdown__grid {
-        grid-template-columns: repeat(4, minmax(100px, 1fr));
-        max-width: 560px;
-      }
-
-      .audio-fab {
-        right: 22px;
-        bottom: 22px;
-      }
+      .info__carousel { justify-content: center; }
+      .single-photo__card { width: min(480px, 60vw); }
+      .info__card { flex-basis: min(420px, 45vw); }
+      .countdown__grid { grid-template-columns: repeat(4, minmax(100px, 1fr)); max-width: 560px; }
+      .audio-fab { right: 22px; bottom: 22px; }
+      .scroll-hint { bottom: 2.5rem; }
     }
   </style>
 </head>
 <body>
-<audio id="bg-audio" loop preload="none">
-  <source src="aerosmith.mp3" type="audio/mpeg">
-</audio>
-<button class="audio-fab" id="audio-toggle" aria-label="Attiva musica" title="Play / Pausa">▶️</button>
+  <audio id="bg-audio" loop preload="none">
+    <source src="aerosmith.mp3" type="audio/mpeg">
+  </audio>
+  <button class="audio-fab" id="audio-toggle" aria-label="Attiva musica" title="Play / Pausa">▶️</button>
 
-<header class="hero">
-  <video
-          class="hero__bg"
-          id="hero-bg"
-          autoplay
-          loop
-          muted
-          playsinline
-          preload="auto"
-          aria-hidden="true">
-    <source src="video1.mp4" type="video/mp4">
-  </video>
-  <div class="hero__content">
-    <h1 class="hero__names"> Jorge & Karin</h1>
-    <p class="optimistic-phrase">Nozze d' Argento</p>
-    <h2 class="hero__names">25°</h2>
-    <p class="optimistic-phrase">Anni di Matrimonio</p>
-  </div>
-</header>
+  <header class="hero">
+    <video
+      class="hero__bg"
+      id="hero-bg"
+      autoplay loop muted playsinline preload="auto"
+      aria-hidden="true">
+      <source src="video1.mp4" type="video/mp4">
+    </video>
 
-<!-- PRIMA FOTO (al posto del vecchio carosello) -->
-<section class="single-photo si20 amrzongle-photo--beige" aria-label="Foto in evidenza 1">
-  <article class="single-photo__card">
-    <img src="matri67.jpg" alt="Foto sposi 1">
-  </article>
-</section>
-
-<section class="countdown" aria-labelledby="countdown-title">
-  <h2 id="countdown-title">25 Aprile 2026</h2>
-  <div class="countdown__grid" role="timer" aria-live="polite">
-    <div class="countdown__box">
-      <span class="countdown__value" id="days">00</span>
-      <span class="countdown__label">Giorni</span>
+    <div class="hero__content">
+      <h1 class="hero__names">Jorge & Karin</h1>
+      <p class="optimistic-phrase">Nozze d' Argento</p>
+      <h2 class="hero__names">25°</h2>
+      <p class="optimistic-phrase">Anni di Matrimonio</p>
     </div>
-    <div class="countdown__box">
-      <span class="countdown__value" id="hours">00</span>
-      <span class="countdown__label">Ore</span>
-    </div>
-    <div class="countdown__box">
-      <span class="countdown__value" id="minutes">00</span>
-      <span class="countdown__label">Minuti</span>
-    </div>
-    <div class="countdown__box">
-      <span class="countdown__value" id="seconds">00</span>
-      <span class="countdown__label">Secondi</span>
-    </div>
-  </div>
-  <p class="optimistic-phrase">
-    "25 anni, 300 mesi, 9125 giorni, 219000 ore e 13140000 minuti di amore, felicità, sorrisi, lacrime, avventure, complicità e sopratutto rispetto!"
-  </p>
-</section>
 
-<!-- SECONDA FOTO (sotto il countdown) -->
-<section class="single-photo single-photo--white" aria-label="Foto in evidenza 2">
-  <article class="single-photo__card">
-    <img src="matri2.jpg" alt="Foto sposi 2">
-  </article>
-</section>
+    <!-- Freccia scroll animata -->
+    <button class="scroll-hint" id="scroll-hint" aria-label="Scorri verso il basso">
+      <span class="scroll-hint__label">Scopri</span>
+      <span class="scroll-hint__arrow">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </span>
+    </button>
+  </header>
 
-<section class="invitation">
-  <div class="optimistic-phrase">
-    <p>
-      Con gioia vogliamo invitarvi a festeggiare questi 25 anni di matrimonio per rinnovare le nostre promesse, con le stesse emozioni e certezze come quel primo giorno. E questo momento sarà ancora più bello se lo condividiamo con i nostri parenti e amici più cari! Per questo, accompagnaci in questo giorno così importante per noi, per far parte della nostra storia
+  <section class="single-photo single-photo--beige" aria-label="Foto in evidenza 1">
+    <article class="single-photo__card">
+      <img src="matri67.jpg" alt="Foto sposi 1">
+    </article>
+  </section>
+
+  <section class="countdown" aria-labelledby="countdown-title">
+    <h2 id="countdown-title">25 Aprile 2026</h2>
+    <div class="countdown__grid" role="timer" aria-live="polite">
+      <div class="countdown__box">
+        <span class="countdown__value" id="days">00</span>
+        <span class="countdown__label">Giorni</span>
+      </div>
+      <div class="countdown__box">
+        <span class="countdown__value" id="hours">00</span>
+        <span class="countdown__label">Ore</span>
+      </div>
+      <div class="countdown__box">
+        <span class="countdown__value" id="minutes">00</span>
+        <span class="countdown__label">Minuti</span>
+      </div>
+      <div class="countdown__box">
+        <span class="countdown__value" id="seconds">00</span>
+        <span class="countdown__label">Secondi</span>
+      </div>
+    </div>
+    <p class="optimistic-phrase">
+      "25 anni, 300 mesi, 9125 giorni, 219000 ore e 13140000 minuti di amore, felicità, sorrisi, lacrime, avventure, complicità e sopratutto rispetto!"
     </p>
-    <p class="invitation__signature">Con amore, Jorge e Karin</p>
-  </div>
-</section>
+  </section>
 
-<!-- TERZA FOTO (prima delle Informazioni Pratiche) -->
-<section class="single-photo single-photo--beige" aria-label="Foto in evidenza 3">
-  <article class="single-photo__card">
-    <img src="matri16.jpg" alt="Foto sposi 3">
-  </article>
-</section>
-
-<section class="info" aria-labelledby="info-title">
-  <h2 class="info__title" id="info-title">Informazioni Evento</h2>
-  <div class="info__carousel" aria-label="Card informative evento">
-    <article class="info__card">
-      <div class="info__icon" aria-hidden="true">📍</div>
-      <h3>Luogo</h3>
-      <p>La valle di Anna, Via di valle 31, Lastra a Signa, 50055, Firenze</p>
-      <iframe
-              class="info__map"
-              title="Mappa della location"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2882.0080904252973!2d11.119885376354585!3d43.751928771097575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a5b88e0a27813%3A0xa5c1d58355aa74ec!2sLa%20Valle%20Di%20Anna!5e0!3m2!1sit!2sit!4v1772978254831!5m2!1sit!2sit">
-      </iframe>
+  <section class="single-photo single-photo--white" aria-label="Foto in evidenza 2">
+    <article class="single-photo__card">
+      <img src="matri2.jpg" alt="Foto sposi 2">
     </article>
+  </section>
 
-    <article class="info__card">
-      <div class="info__icon" aria-hidden="true">📞</div>
-      <h3>Conferma Presenza (invito per 2 persone)</h3>
-      <p>Per confermare la partecipazione, contattare direttamente gli sposi. Risposta di partecipazione entro il 5 aprile 2026</p>
-      <a class="info__phone" href="https://wa.me/393298463470" target="_blank" rel="noopener noreferrer">💬 Confermo a Karin: 3298463470</a>
-      <p>Oppure</p>
-      <a class="info__phone" href="https://wa.me/3206161015" target="_blank" rel="noopener noreferrer">💬 Conferma a Jorge: 3206161015</a>
+  <section class="invitation">
+    <div class="optimistic-phrase">
+      <p>
+        Con gioia vogliamo invitarvi a festeggiare questi 25 anni di matrimonio per rinnovare le nostre promesse, con le stesse emozioni e certezze come quel primo giorno. E questo momento sarà ancora più bello se lo condividiamo con i nostri parenti e amici più cari! Per questo, accompagnaci in questo giorno così importante per noi, per far parte della nostra storia
+      </p>
+      <p class="invitation__signature">Con amore, Jorge e Karin</p>
+    </div>
+  </section>
 
+  <section class="single-photo single-photo--beige" aria-label="Foto in evidenza 3">
+    <article class="single-photo__card">
+      <img src="matri16.jpg" alt="Foto sposi 3">
     </article>
-    
-    <article class="info__card">
-      <div class="info__icon" aria-hidden="true">🕰️</div>
-      <h3>Dettagli</h3>
-      <p>Arrivo ospiti ore 17:00, cerimonia alle ore 17:30 con rinnovo delle fedi, seguito dalla festa e cibo.</p>
-      <p>Parcheggio riservato disponibile all'interno della struttura.</p>
-    </article>
-  </div>
-</section>
+  </section>
 
-<footer class="footer-faq">
-  <h2>FAQ</h2>
-  <div class="faq">
-    <details>
-      <summary>Dove si tiene la cerimonia?</summary>
-      <p>La cerimonia si terrà presso La valle di Anna, Via di valle 31, Lastra a Signa, Firenze.</p>
-    </details>
-    <details>
-      <summary>Come confermo la presenza?</summary>
-      <p>È possibile confermare chiamando il numero in "Conferma Presenza" entro il 5 aprile 2026.</p>
-    </details>
-    <details>
-      <summary>C'è parcheggio?</summary>
-      <p>Sì, è disponibile un parcheggio riservato per gli ospiti all'interno della location.</p>
-    </details>
-    <details>
-      <summary>Regali?</summary>
-      <p>La vostra presenza sarà per noi il dono più bello, ma se desiderate comunque farci un regalo o un contributo, saremo molto grati! </p>
-    </details>
-  </div>
-  <p class="footer-note">25 Anni Insieme • 25 Aprile 2026</p>
-</footer>
+  <section class="info" aria-labelledby="info-title">
+    <h2 class="info__title" id="info-title">Informazioni Evento</h2>
+    <div class="info__carousel" aria-label="Card informative evento">
+      <article class="info__card">
+        <div class="info__icon" aria-hidden="true">📍</div>
+        <h3>Luogo</h3>
+        <p>La valle di Anna, Via di valle 31, Lastra a Signa, 50055, Firenze</p>
+        <iframe
+          class="info__map"
+          title="Mappa della location"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2882.0080904252973!2d11.119885376354585!3d43.751928771097575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a5b88e0a27813%3A0xa5c1d58355aa74ec!2sLa%20Valle%20Di%20Anna!5e0!3m2!1sit!2sit!4v1772978254831!5m2!1sit!2sit">
+        </iframe>
+      </article>
 
-<script>
-  // Play/Pause audio background
-  const audio = document.getElementById("bg-audio");
-  const audioToggle = document.getElementById("audio-toggle");
+      <article class="info__card">
+        <div class="info__icon" aria-hidden="true">📞</div>
+        <h3>Conferma Presenza (invito per 2 persone)</h3>
+        <p>Per confermare la partecipazione, contattare direttamente gli sposi. Risposta di partecipazione entro il 5 aprile 2026</p>
+        <a class="info__phone" href="https://wa.me/393298463470" target="_blank" rel="noopener noreferrer">💬 Confermo a Karin: 3298463470</a>
+        <p>Oppure</p>
+        <a class="info__phone" href="https://wa.me/393206161015" target="_blank" rel="noopener noreferrer">💬 Conferma a Jorge: 3206161015</a>
+      </article>
 
-  audioToggle.addEventListener("click", async () => {
-    if (audio.paused) {
-      try {
-        await audio.play();
-        audioToggle.textContent = "⏸️";
-        audioToggle.setAttribute("aria-label", "Metti in pausa musica");
-      } catch (error) {
+      <article class="info__card">
+        <div class="info__icon" aria-hidden="true">🕰️</div>
+        <h3>Dettagli</h3>
+        <p>Arrivo ospiti ore 17:00, cerimonia alle ore 17:30 con rinnovo delle fedi, seguito dalla festa e cibo.</p>
+        <p>Parcheggio riservato disponibile all'interno della struttura.</p>
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer-faq">
+    <h2>FAQ</h2>
+    <div class="faq">
+      <details>
+        <summary>Dove si tiene la cerimonia?</summary>
+        <p>La cerimonia si terrà presso La valle di Anna, Via di valle 31, Lastra a Signa, Firenze.</p>
+      </details>
+      <details>
+        <summary>Come confermo la presenza?</summary>
+        <p>È possibile confermare tramite WhatsApp nella sezione "Conferma Presenza" entro il 5 aprile 2026.</p>
+      </details>
+      <details>
+        <summary>C'è parcheggio?</summary>
+        <p>Sì, è disponibile un parcheggio riservato per gli ospiti all'interno della location.</p>
+      </details>
+      <details>
+        <summary>Regali?</summary>
+        <p>La vostra presenza sarà per noi il dono più bello, ma se desiderate comunque farci un regalo o un contributo, saremo molto grati!</p>
+      </details>
+    </div>
+    <p class="footer-note">25 Anni Insieme • 25 Aprile 2026</p>
+  </footer>
+
+  <script>
+    const audio = document.getElementById("bg-audio");
+    const audioToggle = document.getElementById("audio-toggle");
+
+    // Pausa automatica quando si cambia app / scheda
+    let wasPlayingBeforeHide = false;
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        if (!audio.paused) {
+          wasPlayingBeforeHide = true;
+          audio.pause();
+          audioToggle.textContent = "▶️";
+          audioToggle.setAttribute("aria-label", "Attiva musica");
+        }
+      } else {
+        if (wasPlayingBeforeHide) {
+          wasPlayingBeforeHide = false;
+          audio.play().then(() => {
+            audioToggle.textContent = "⏸️";
+            audioToggle.setAttribute("aria-label", "Metti in pausa musica");
+          }).catch(() => {});
+        }
+      }
+    });
+
+    // Play/Pause audio
+    audioToggle.addEventListener("click", async () => {
+      if (audio.paused) {
+        try {
+          await audio.play();
+          audioToggle.textContent = "⏸️";
+          audioToggle.setAttribute("aria-label", "Metti in pausa musica");
+        } catch {
+          audioToggle.textContent = "▶️";
+          audioToggle.setAttribute("aria-label", "Attiva musica");
+        }
+      } else {
+        audio.pause();
         audioToggle.textContent = "▶️";
         audioToggle.setAttribute("aria-label", "Attiva musica");
       }
-    } else {
-      audio.pause();
-      audioToggle.textContent = "▶️";
-      audioToggle.setAttribute("aria-label", "Attiva musica");
-    }
-  });
+    });
 
-  // Parallax zoom-out
-  const heroBg = document.getElementById("hero-bg");
-  const minScale = 1.02;
-  const maxScale = 1.18;
+    // Freccia scroll: clic → scorre alla prima sezione dopo l'hero
+    const scrollHint = document.getElementById("scroll-hint");
+    scrollHint.addEventListener("click", () => {
+      const nextSection = document.querySelector(".hero").nextElementSibling;
+      if (nextSection) nextSection.scrollIntoView({ behavior: "smooth" });
+    });
 
-  const updateParallax = () => {
-    const y = window.scrollY;
-    const ratio = Math.min(y / window.innerHeight, 1);
-    const scale = maxScale - (maxScale - minScale) * ratio;
-    const shift = Math.min(y * 0.2, 90);
+    // Nasconde la freccia dopo che l'utente inizia a scorrere
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 60) {
+        scrollHint.style.opacity = "0";
+        scrollHint.style.pointerEvents = "none";
+      } else {
+        scrollHint.style.opacity = "1";
+        scrollHint.style.pointerEvents = "auto";
+      }
+    }, { passive: true });
 
-    if(heroBg) {
-        heroBg.style.transform = `translateY(${shift}px) scale(${scale.toFixed(3)})`;
-    }
-  };
+    // Parallax zoom-out
+    const heroBg = document.getElementById("hero-bg");
+    const updateParallax = () => {
+      const y = window.scrollY;
+      const scale = 1.18 - (1.18 - 1.02) * Math.min(y / window.innerHeight, 1);
+      const shift = Math.min(y * 0.2, 90);
+      if (heroBg) heroBg.style.transform = `translateY(${shift}px) scale(${scale.toFixed(3)})`;
+    };
+    updateParallax();
+    window.addEventListener("scroll", updateParallax, { passive: true });
 
-  updateParallax();
-  window.addEventListener("scroll", updateParallax, { passive: true });
+    // Countdown verso il 25/04/2026 ore 17:00
+    const targetDate = new Date(2026, 3, 25, 17, 0, 0).getTime();
+    const fields = {
+      days:    document.getElementById("days"),
+      hours:   document.getElementById("hours"),
+      minutes: document.getElementById("minutes"),
+      seconds: document.getElementById("seconds")
+    };
+    const fmt = v => String(v).padStart(2, "0");
 
-  // Countdown verso il 25/04/2026 ore 11:00 (ora locale).
-  const targetDate = new Date(2026, 3, 25, 11, 0, 0).getTime();
-  const fields = {
-    days: document.getElementById("days"),
-    hours: document.getElementById("hours"),
-    minutes: document.getElementById("minutes"),
-    seconds: document.getElementById("seconds")
-  };
-
-  const format = (value) => String(value).padStart(2, "0");
-
-  const renderCountdown = () => {
-    const now = Date.now();
-    const diff = targetDate - now;
-
-    if (diff <= 0) {
-      fields.days.textContent = "00";
-      fields.hours.textContent = "00";
-      fields.minutes.textContent = "00";
-      fields.seconds.textContent = "00";
-      return;
-    }
-
-    const totalSeconds = Math.floor(diff / 1000);
-    const days = Math.floor(totalSeconds / 86400);
-    const hours = Math.floor((totalSeconds % 86400) / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-
-    fields.days.textContent = format(days);
-    fields.hours.textContent = format(hours);
-    fields.minutes.textContent = format(minutes);
-    fields.seconds.textContent = format(seconds);
-  };
-
-  renderCountdown();
-  setInterval(renderCountdown, 1000);
-</script>
+    const renderCountdown = () => {
+      const diff = targetDate - Date.now();
+      if (diff <= 0) { Object.values(fields).forEach(f => f.textContent = "00"); return; }
+      const s = Math.floor(diff / 1000);
+      fields.days.textContent    = fmt(Math.floor(s / 86400));
+      fields.hours.textContent   = fmt(Math.floor((s % 86400) / 3600));
+      fields.minutes.textContent = fmt(Math.floor((s % 3600) / 60));
+      fields.seconds.textContent = fmt(s % 60);
+    };
+    renderCountdown();
+    setInterval(renderCountdown, 1000);
+  </script>
 </body>
 </html>
