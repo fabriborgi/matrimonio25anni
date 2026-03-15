@@ -6,14 +6,14 @@
   <title>25° Anniversario di Matrimonio - Jorge e Karin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --white: #FFFFFF;
       --black: #2B3A4A;
       --gold: #6B8BAE;
       --beige: #D6E1EE;
-      --title-font: "Sacramento", cursive;
+      --title-font: "Great Vibes", cursive;
       --text-font: "Montserrat", sans-serif;
     }
 
@@ -393,6 +393,14 @@
       color: var(--gold);
       font-family: var(--title-font);
       font-size: 1.8rem;
+    }
+
+    /* Esclusioni: FAQ e card carosello usano Montserrat */
+    .faq summary,
+    .faq p,
+    .info__card h3,
+    .info__card p {
+      font-family: var(--text-font);
     }
 
     @media (min-width: 768px) {
